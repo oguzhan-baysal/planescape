@@ -11,7 +11,6 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import { Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -439,7 +438,6 @@ export default function Home() {
     return result;
   };
 
-
   function getFlightStatusText(status: string): string {
     const statusMap: { [key: string]: string } = {
       SCH: "Scheduled",
@@ -855,11 +853,11 @@ export default function Home() {
                                   key={airline}
                                   id={airline.toLowerCase().replace(' ', '-')}
                                   checked={airlines.includes(airline.toLowerCase().slice(0, 2))}
-                                  onCheckedChange={(checked) => {
+                                  onCheckedChange={(checked: boolean) => {
                                     if (checked) {
-                                      setAirlines(prev => [...prev, airline.toLowerCase().slice(0, 2)]);
+                                      setAirlines((prev: string[]) => [...prev, airline.toLowerCase().slice(0, 2)]);
                                     } else {
-                                      setAirlines(prev => prev.filter(a => a !== airline.toLowerCase().slice(0, 2)));
+                                      setAirlines((prev: string[]) => prev.filter((a: string) => a !== airline.toLowerCase().slice(0, 2)));
                                     }
                                   }}
                                 >
