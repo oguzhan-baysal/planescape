@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.react-datepicker {
+  font-family: Arial, sans-serif;
+  border: 1px solid #7c3aed;
+  border-radius: 0.3rem;
+  background-color: white;
+}
+
+.react-datepicker__header {
+  background-color: #7c3aed;
+  color: white;
+}
+
+.react-datepicker__current-month, 
+.react-datepicker__day-name {
+  color: white;
+}
+
+.react-datepicker__day--selected, 
+.react-datepicker__day--in-selecting-range, 
+.react-datepicker__day--in-range {
+  background-color: #7c3aed;
+  color: white;
+}
+
+.react-datepicker__day:hover {
+  background-color: #9f7aea;
+}
