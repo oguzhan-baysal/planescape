@@ -23,7 +23,7 @@ export async function GET(request: Request) {
       }
     });
 
-    const flights = response.data.flights.map((flight: any) => ({
+    const flights = response.data.flights.map((flight: { id: string; flightName: string; route: { destinations: string[] }; scheduleDateTime: string; flightDirection: string; }) => ({
       id: flight.id,
       flightNumber: flight.flightName,
       route: {
