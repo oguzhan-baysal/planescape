@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PlaneScape
 
-## Getting Started
+PlaneScape, kullanıcıların uçuş rezervasyonlarını yapmalarını ve mevcut rezervasyonlarını yönetmelerini sağlayan bir web uygulamasıdır. Bu proje, modern web teknolojileri kullanılarak geliştirilmiştir ve kullanıcı dostu bir arayüz sunar.
 
-First, run the development server:
+## Özellikler
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Uçuş arama ve rezervasyon yapma
+- Mevcut rezervasyonları görüntüleme ve yönetme
+- Uçuş detaylarını görüntüleme
+- Responsive tasarım ile tüm cihazlarda uyumlu
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Kullanılan Teknolojiler
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js**: React tabanlı bir framework olup, sunucu tarafı render (SSR) ve statik site oluşturma (SSG) özellikleri sunar.
+- **React**: Kullanıcı arayüzleri oluşturmak için kullanılan bir JavaScript kütüphanesidir.
+- **TypeScript**: JavaScript'in statik tip kontrolü sağlayan bir süper setidir.
+- **Tailwind CSS**: Hızlı ve verimli bir şekilde stil oluşturmak için kullanılan bir CSS framework'üdür.
+- **Axios**: HTTP istekleri yapmak için kullanılan bir kütüphanedir.
+- **MongoDB**: NoSQL veritabanı olarak kullanılmıştır.
+- **Framer Motion**: Animasyonlar ve geçişler için kullanılan bir kütüphanedir.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Kurulum
 
-## Learn More
+Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları izleyin:
 
-To learn more about Next.js, take a look at the following resources:
+1. Depoyu klonlayın:
+    ```bash
+    git clone https://github.com/kullaniciadi/planescape.git
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Proje dizinine gidin:
+    ```bash
+    cd planescape
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. Gerekli bağımlılıkları yükleyin:
+    ```bash
+    npm install
+    ```
+4. Gerekli çevresel değişkenleri `.env` dosyasına ekleyin:
+    ```env
+    SCHIPHOL_APP_ID=your_schiphol_app_id
+    SCHIPHOL_APP_KEY=your_schiphol_app_key
+    MONGODB_URI=your_mongodb_uri
+    ```
 
-## Deploy on Vercel
+5. Geliştirme sunucusunu başlatın:
+    ```bash
+    npm run dev
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+6. Tarayıcınızda [http://localhost:3000](http://localhost:3000) adresini açarak uygulamayı görüntüleyin.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Proje Yapısı
+
+- **src/app/page.tsx**: Ana sayfa bileşeni, uçuş arama ve rezervasyon yapma işlemlerini içerir.
+- **src/app/my-flights/page.tsx**: Kullanıcının mevcut rezervasyonlarını görüntülediği ve yönettiği sayfa.
+- **src/components**: Uygulamanın çeşitli bileşenlerini içerir.
+- **src/lib**: Yardımcı fonksiyonlar ve veritabanı bağlantı dosyalarını içerir.
+- **public**: Statik dosyalar (resimler, ikonlar vb.) bu dizinde bulunur.
+- **styles**: Global stil dosyalarını içerir.
+
+## CSS Bilgileri
+
+- **Tailwind CSS**: Projede stil oluşturmak için Tailwind CSS kullanılmıştır. Tailwind CSS, utility-first bir CSS framework'üdür ve hızlı bir şekilde stil oluşturmayı sağlar.
+- **Responsive Tasarım**: Proje, farklı ekran boyutlarına uyum sağlayacak şekilde tasarlanmıştır. Tailwind CSS'in medya sorguları (`sm:`, `md:`, `lg:`, `xl:`) kullanılarak responsive tasarım sağlanmıştır.
+
+## Katkıda Bulunma
+
+Katkıda bulunmak isterseniz, lütfen bir pull request gönderin. Her türlü katkı ve geri bildirim memnuniyetle karşılanır.
+
+## Lisans
+
+Bu proje MIT Lisansı ile lisanslanmıştır. Daha fazla bilgi için `LICENSE` dosyasına bakabilirsiniz.
