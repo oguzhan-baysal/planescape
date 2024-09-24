@@ -68,7 +68,7 @@ export default function Home() {
     if (flights.length > 0) {
       sortFlights(sortOption);
     }
-  }, [sortOption]);
+  }, [flights.length, sortOption]);
 
   const fetchFlights = async () => {
     try {
@@ -686,19 +686,19 @@ export default function Home() {
                                   </div>
                                 </div>
                                 <div className="flex justify-between items-center mt-4">
-                                  <Button 
-                                    className="absolute -bottom-4 left-4 bg-purple-600 hover:bg-purple-700 text-white text-xs py-1 px-2 rounded-b-md"
-                                    onClick={() => setExpandedFlights(prev => ({ ...prev, [flight.id]: !prev[flight.id] }))}
-                                  >
-                                    {expandedFlights[flight.id] ? 'Hide Details' : 'Check the Details'}
-                                  </Button>
-                                  <Button 
-                                    className="absolute bottom-4 right-4 bg-purple-600 hover:bg-purple-700 text-white"
-                                    onClick={() => makeReservation(flight)}
-                                  >
-                                    Book Flight
-                                  </Button>
-                                </div>
+                                    <Button 
+                                      className="absolute -bottom-4 left-4 bg-purple-600 hover:bg-purple-700 text-white text-xs py-1 px-2 rounded-b-md"
+                                      onClick={() => setExpandedFlights(prev => ({ ...prev, [flight.id]: !prev[flight.id] }))}
+                                    >
+                                      {expandedFlights[flight.id] ? 'Hide Details' : 'Check the Details'}
+                                    </Button>
+                                    <Button 
+                                      className="absolute bottom-4 right-4 bg-purple-600 hover:bg-purple-700 text-white"
+                                      onClick={() => makeReservation(flight)}
+                                    >
+                                      Book Flight
+                                    </Button>
+                                  </div>
                               </CardContent>
                               {expandedFlights[flight.id] && (
                                 <motion.div
