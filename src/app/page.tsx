@@ -12,7 +12,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-import { addDays, differenceInMinutes } from 'date-fns'; // date-fns kütüphanesini eklemeyi unutmayın
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import { Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -48,7 +47,6 @@ export default function Home() {
   const [date, setDate] = useState<Date | null>(null);
   const [returnDate, setReturnDate] = useState<Date | null>(null);
   const [direction, setDirection] = useState<string | null>(null);
-  const [message, setMessage] = useState('');
   const [tripType, setTripType] = useState('round');
   const [sortOption, setSortOption] = useState('recommended');
   const [arrivalTime, setArrivalTime] = useState<string[]>([]);
@@ -76,7 +74,6 @@ export default function Home() {
   const fetchFlights = async () => {
     try {
       if (!date || !direction || !from || !to) {
-        setMessage('Please select a date, direction, departure and arrival.');
         return;
       }
 
@@ -111,9 +108,7 @@ export default function Home() {
       setFilteredFlights(filteredFlights);
       
       if (filteredFlights.length === 0) {
-        setMessage(`No flights found for ${from} to ${to} on this date.`);
       } else {
-        setMessage('');
       }
 
       // Eğer Round Trip modundaysak, dönüş uçuşlarını da getir
@@ -148,9 +143,7 @@ export default function Home() {
         setFilteredFlights(prevFlights => [...prevFlights, ...filteredReturnFlights]);
         
         if (filteredReturnFlights.length === 0) {
-          setMessage(`No return flights found for ${to} to ${from} on this date.`);
         } else {
-          setMessage('');
         }
       }
     } catch (error) {
@@ -158,7 +151,6 @@ export default function Home() {
       if (axios.isAxiosError(error)) {
         console.error('Error details:', error.response?.data);
       }
-      setMessage('Failed to fetch flights. Please try again later.');
     }
   };
 
@@ -168,16 +160,11 @@ export default function Home() {
       switch (option) {
         case 'lowest':
           sortedFlights.sort((a, b) => {
-            // Burada gerçek fiyat verisi olsaydı onu kullanırdık
-            // Şimdilik rastgele bir fiyat ataması yapalım
-            const priceA = Math.random() * 1000;
-            const priceB = Math.random() * 1000;
-            return priceA - priceB;
+            return 0; // Geçici olarak sıralama yapılmıyor
           });
           break;
         case 'recommended':
-          // Burada önerilen sıralama mantığını uygulayabilirsiniz
-          // Şimdilik orijinal sıralamayı koruyalım
+          // Önerilen sıralama mantığı
           break;
         default:
           break;
@@ -191,7 +178,6 @@ export default function Home() {
     const flightDate = new Date(flight.scheduleDateTime);
 
     if (flightDate < currentDate) {
-      setMessage('You cannot make a reservation for this date.');
       return;
     }
 
@@ -203,8 +189,6 @@ export default function Home() {
       });
 
       if (response.data.success) {
-        setMessage('Your flight has been successfully booked.');
-
         console.log('Updating flight with id:', flight.id);
 
         // Uçuş bilgilerini güncelle
@@ -227,11 +211,9 @@ export default function Home() {
         // Yönlendirmeyi hemen yap
         router.push('/my-flights');
       } else {
-        setMessage('An error occurred while making the reservation.');
       }
     } catch (error) {
       console.error('Reservation error:', error);
-      setMessage('An error occurred while making the reservation.');
     }
   };
 
@@ -328,6 +310,8 @@ export default function Home() {
       </label>
     </div>
   ));
+
+  MemoizedCheckbox.displayName = "MemoizedCheckbox";
 
   const getDestinationName = (code: string): string => {
     console.log('Getting destination name for code:', code);
